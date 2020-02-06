@@ -67,7 +67,17 @@ def print_postorder(root):
     print(root.val, end=' ')
 
 def print_levelorder(root):
-    # 4. Levelorder <Lefr
+    # 4. Levelorder: use a queue
+    from collections import deque
+    queue = deque([root])
+    while len(queue) > 0:
+        print(queue[0].val, end=' ')
+        node = queue.popleft()
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+
 
 if __name__ == '__main__':
     root = create_tree_example1()
@@ -77,3 +87,5 @@ if __name__ == '__main__':
     print_preorder(root)
     print('\nPostorder:', end=' ')
     print_postorder(root)
+    print('\nLevelorder:', end=' ')
+    print_levelorder(root)
